@@ -31,15 +31,28 @@ include_once('add.php');
 		<button id="buttonName" type="submit">OK</button>
 	</div>-->
 	<div id="welcome">
-	
-	    <label for="speed">Select a speed</label>
-			<select name="speed" id="speed">				
-				<option>Slow</option>
-				<option selected="selected">Medium</option>
-				<option>Fast</option>				
-			</select>
-		<input id="startButton" type="button" value="Играть" onclick="showOfferDialog('#formDialog')">
-		
+		<table>
+			<tr>
+			  <td>
+			   <h1>Welcome!</h1>
+			  </td>
+			</tr>
+	        <tr>
+			  <td>
+				<label for="speed">Select a speed</label>
+					<select name="speed" id="speed">				
+						<option>Slow</option>
+						<option selected="selected">Medium</option>
+						<option>Fast</option>				
+					</select>
+				</td>
+			</tr>
+			<tr>
+			  <td>
+				<input id="startButton" type="button" value="Играть" onclick="showOfferDialog('#formDialog')">
+			  </td>
+			</tr>
+		</table>
 	</div>
 	<div id="formDialog">
 		<input type="text" id="nameField" placeholder="Введите ваше имя">
