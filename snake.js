@@ -47,20 +47,24 @@ function Snake(body, course)
 			
 			//delete Snake from area
 			that.deleteSnake(last_body);
-				if(that.body[0][1] + 1 > 20){
-					that.kill();
-					break;
+				
+				if(apple.isFood(that.body[0][0],that.body[0][1] + 1)){
+					that.eat(LastX,LastY);
 				}else{
-						if(apple.isFood(that.body[0][0],that.body[0][1] + 1)){
-							that.eat(LastX,LastY);
+						if(that.body[0][1] + 1 > 20 || !m1.isCellEmpty(that.body[0][0],that.body[0][1] + 1) ){
+							that.kill();
+					        break;
 						}
-				}	
+				}
+				
+				
 			for(var i = that.body.length-1; i > 0; i--){
 				that.body[i] = that.body[i-1];
 				if(i == 1){
 					var temp = [that.body[0][0],that.body[0][1]];
 			        that.body[1] = temp;					
 			        ++that.body[0][1];
+					
 					for(var k = 1; k<that.body.length; k++){
 						if(that.body[0][0] == that.body[k][0]&& that.body[0][1] == that.body[k][1] || that.body[0][0] == LastX && that.body[0][1] == LastY){
 							//alert("You lose");
@@ -90,16 +94,15 @@ function Snake(body, course)
 			that.course = 'left';
 			
 			//delete Snake from area
-			that.deleteSnake(last_body);
-			
-			if(that.body[0][1] - 1 < 1){
-					that.kill();
-					break;
-				}else{
+			that.deleteSnake(last_body);			
 				if(apple.isFood(that.body[0][0],that.body[0][1] - 1)){
-						that.eat(LastX,LastY);
-					}	
-				}	
+					that.eat(LastX,LastY);
+				}else{
+						if(that.body[0][1] - 1 < 1 || !m1.isCellEmpty(that.body[0][0],that.body[0][1] - 1) ){
+							that.kill();
+					        break;
+						}
+				}
 			for(var i = that.body.length-1; i > 0; i--){
 				that.body[i] = that.body[i-1];
 				if(i == 1){
@@ -107,7 +110,7 @@ function Snake(body, course)
 			        that.body[1] = temp;					
 			        --that.body[0][1];
 					for(var k = 1; k<that.body.length; k++){
-						if(that.body[0][0] == that.body[k][0]&& that.body[0][1] == that.body[k][1] || that.body[0][0] == LastX && that.body[0][1] == LastY){
+						if(that.body[0][0] == that.body[k][0]&& that.body[0][1] == that.body[k][1] || that.body[0][0] == LastX && that.body[0][1] == LastY || !m1.isCellEmpty){
 							//alert("You lose");
 							that.kill();
 							
@@ -138,14 +141,14 @@ function Snake(body, course)
 			//delete Snake from area
 			that.deleteSnake(last_body);
 			
-			if(that.body[0][0] + 1 > 20){
-					that.kill();
-					break;
+			if(apple.isFood(that.body[0][0] + 1,that.body[0][1])){
+					that.eat(LastX,LastY);
 				}else{
-				if(apple.isFood(that.body[0][0] + 1,that.body[0][1])){
-							that.eat(LastX,LastY);
+						if(that.body[0][0] + 1 > 20 || !m1.isCellEmpty(that.body[0][0] + 1,that.body[0][1]) ){
+							that.kill();
+					        break;
+						}
 				}
-			}
 			for(var i = that.body.length-1; i > 0; i--){
 				that.body[i] = that.body[i-1];
 				if(i == 1){
@@ -154,7 +157,7 @@ function Snake(body, course)
 			        ++that.body[0][0]>20					
 					//alert(that.body[0][0]+" , "+that.body[0][1]);
 					for(var k = 1; k<that.body.length; k++){
-						if(that.body[0][0] == that.body[k][0]&& that.body[0][1] == that.body[k][1] || that.body[0][0] == LastX && that.body[0][1] == LastY){
+						if(that.body[0][0] == that.body[k][0]&& that.body[0][1] == that.body[k][1] || that.body[0][0] == LastX && that.body[0][1] == LastY || !m1.isCellEmpty){
 							//alert("You lose");
 							that.kill();
 							
@@ -187,16 +190,16 @@ function Snake(body, course)
 			that.course = 'up';
 			
 			//delete Snake from area
-			that.deleteSnake(last_body);
-			
-			if(that.body[0][0] - 1 < 1){
-					that.kill();
-					break;
+			that.deleteSnake(last_body);			    
+
+				if(apple.isFood(that.body[0][0] - 1,that.body[0][1])){
+					that.eat(LastX,LastY);
 				}else{
-			    if(apple.isFood(that.body[0][0] - 1,that.body[0][1])){
-						  that.eat(LastX,LastY);
-					}
-				}	
+						if(that.body[0][0] - 1 < 1 || !m1.isCellEmpty(that.body[0][0] - 1,that.body[0][1]) ){
+							that.kill();
+					        break;
+						}
+				}
 			for(var i = that.body.length-1; i > 0; i--){
 				that.body[i] = that.body[i-1];
 				if(i == 1){
@@ -204,7 +207,7 @@ function Snake(body, course)
 			        that.body[1] = temp;					
 			        --that.body[0][0];
 					for(var k = 1; k<that.body.length; k++){
-						if(that.body[0][0] == that.body[k][0]&& that.body[0][1] == that.body[k][1] || that.body[0][0] == LastX && that.body[0][1] == LastY){
+						if(that.body[0][0] == that.body[k][0]&& that.body[0][1] == that.body[k][1] || that.body[0][0] == LastX && that.body[0][1] == LastY || !m1.isCellEmpty){
 							//alert("You lose");
 							that.kill();
 							

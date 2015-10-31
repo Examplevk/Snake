@@ -138,5 +138,17 @@ function Matrix(containerId, rows, cols)
 		cell.style.background = 'url(ico/KopieHoriz.jpg)';
 		
 	}
+	this.isCellEmpty = function(row,col){
+		var n = row * 20 - 21 + col;
+	
+	    var matrix = document.getElementById(this.containerId);
+	
+		var cell = matrix.children[n];
+		if(cell.style.background = 'white')
+			return true;
+		else 
+			false;
+		
+	}
 }
 		
