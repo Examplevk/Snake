@@ -1,18 +1,18 @@
 //
-// Класс змеи
+// ????? ????
 //
 function Snake(body, course)
 {
-	// координаты строк и столбцов
+	// ?????????? ????? ? ????????
 	this.body = body;
 	
-	// направление движения
+	// ??????????? ????????
 	this.course = course;
 
-	// съелали змейка фрукт
+	// ??????? ?????? ?????
 	this.eated = false;
 	
-	// жива ли змейка
+	// ???? ?? ??????
 	this.alive = true;
 	
 	var that = this;
@@ -21,7 +21,7 @@ function Snake(body, course)
 	{
 		
 		
-		//отрисовываем змейку
+		//???????????? ??????
 		that.manifestation();
 	} 
 	
@@ -47,24 +47,20 @@ function Snake(body, course)
 			
 			//delete Snake from area
 			that.deleteSnake(last_body);
-				
-				if(apple.isFood(that.body[0][0],that.body[0][1] + 1)){
-					that.eat(LastX,LastY);
+				if(that.body[0][1] + 1 > 20){
+					that.kill();
+					break;
 				}else{
-						if(that.body[0][1] + 1 > 20 || !m1.isCellEmpty(that.body[0][0],that.body[0][1] + 1) ){
-							that.kill();
-					        break;
+						if(apple.isFood(that.body[0][0],that.body[0][1] + 1)){
+							that.eat(LastX,LastY);
 						}
-				}
-				
-				
+				}	
 			for(var i = that.body.length-1; i > 0; i--){
 				that.body[i] = that.body[i-1];
 				if(i == 1){
 					var temp = [that.body[0][0],that.body[0][1]];
 			        that.body[1] = temp;					
 			        ++that.body[0][1];
-					
 					for(var k = 1; k<that.body.length; k++){
 						if(that.body[0][0] == that.body[k][0]&& that.body[0][1] == that.body[k][1] || that.body[0][0] == LastX && that.body[0][1] == LastY){
 							//alert("You lose");
@@ -78,7 +74,7 @@ function Snake(body, course)
                    
 			}
 			
-		        //отрисовываем змейку
+		        //???????????? ??????
 				that.manifestation();
 			   if(that.eated){
 					apple.newFood();
@@ -94,15 +90,16 @@ function Snake(body, course)
 			that.course = 'left';
 			
 			//delete Snake from area
-			that.deleteSnake(last_body);			
-				if(apple.isFood(that.body[0][0],that.body[0][1] - 1)){
-					that.eat(LastX,LastY);
+			that.deleteSnake(last_body);
+			
+			if(that.body[0][1] - 1 < 1){
+					that.kill();
+					break;
 				}else{
-						if(that.body[0][1] - 1 < 1 || !m1.isCellEmpty(that.body[0][0],that.body[0][1] - 1) ){
-							that.kill();
-					        break;
-						}
-				}
+				if(apple.isFood(that.body[0][0],that.body[0][1] - 1)){
+						that.eat(LastX,LastY);
+					}	
+				}	
 			for(var i = that.body.length-1; i > 0; i--){
 				that.body[i] = that.body[i-1];
 				if(i == 1){
@@ -110,7 +107,7 @@ function Snake(body, course)
 			        that.body[1] = temp;					
 			        --that.body[0][1];
 					for(var k = 1; k<that.body.length; k++){
-						if(that.body[0][0] == that.body[k][0]&& that.body[0][1] == that.body[k][1] || that.body[0][0] == LastX && that.body[0][1] == LastY ){
+						if(that.body[0][0] == that.body[k][0]&& that.body[0][1] == that.body[k][1] || that.body[0][0] == LastX && that.body[0][1] == LastY){
 							//alert("You lose");
 							that.kill();
 							
@@ -125,7 +122,7 @@ function Snake(body, course)
 			
 			
 			
-			    //отрисовываем змейку
+			    //???????????? ??????
 				that.manifestation();
 			   if(that.eated){
 					apple.newFood();
@@ -141,14 +138,14 @@ function Snake(body, course)
 			//delete Snake from area
 			that.deleteSnake(last_body);
 			
-			if(apple.isFood(that.body[0][0] + 1,that.body[0][1])){
-					that.eat(LastX,LastY);
+			if(that.body[0][0] + 1 > 20){
+					that.kill();
+					break;
 				}else{
-						if(that.body[0][0] + 1 > 20 || !m1.isCellEmpty(that.body[0][0] + 1,that.body[0][1]) ){
-							that.kill();
-					        break;
-						}
+				if(apple.isFood(that.body[0][0] + 1,that.body[0][1])){
+							that.eat(LastX,LastY);
 				}
+			}
 			for(var i = that.body.length-1; i > 0; i--){
 				that.body[i] = that.body[i-1];
 				if(i == 1){
@@ -175,7 +172,7 @@ function Snake(body, course)
 			
 			
 			
-			    //отрисовываем змейку
+			    //???????????? ??????
 				that.manifestation();
 				if(that.eated){
 					apple.newFood();
@@ -190,16 +187,16 @@ function Snake(body, course)
 			that.course = 'up';
 			
 			//delete Snake from area
-			that.deleteSnake(last_body);			    
-
-				if(apple.isFood(that.body[0][0] - 1,that.body[0][1])){
-					that.eat(LastX,LastY);
+			that.deleteSnake(last_body);
+			
+			if(that.body[0][0] - 1 < 1){
+					that.kill();
+					break;
 				}else{
-						if(that.body[0][0] - 1 < 1 || !m1.isCellEmpty(that.body[0][0] - 1,that.body[0][1]) ){
-							that.kill();
-					        break;
-						}
-				}
+			    if(apple.isFood(that.body[0][0] - 1,that.body[0][1])){
+						  that.eat(LastX,LastY);
+					}
+				}	
 			for(var i = that.body.length-1; i > 0; i--){
 				that.body[i] = that.body[i-1];
 				if(i == 1){
@@ -219,7 +216,7 @@ function Snake(body, course)
                    
 			}
 			
-			    //отрисовываем змейку
+			    //???????????? ??????
 				that.manifestation();
 			
 			if(that.eated){
@@ -232,17 +229,17 @@ function Snake(body, course)
 		
 		
 		
-		/* двигаемся, 
-		   в процессе проверяем ячейку в которую пришли.
-		   меняем координаты тела змеи.
-		   если в ячейке был фрукт - вызывает метод eat.
-		   если же стена или тело змеи - убиваем.
-		   перерисовываем змейку */
+		/* ?????????, 
+		   ? ???????? ????????? ?Ц???? ? ??????? ??????.
+		   ?????? ?????????? ???? ????.
+		   ???? ? ?Ц???? ??? ????? - ???????? ????? eat.
+		   ???? ?? ????? ??? ???? ???? - ???????.
+		   ?????????????? ?????? */
 	}	
 	
 	this.eat = function(x,y)
 	{	
-	//увеличиваем хвост
+	//?????Ц????? ?????
 	    if(that.body[that.body.length-1][0] == that.body[that.body.length-2][0]){
 			
 			if(that.body[that.body.length-1][1] > that.body[that.body.length-2][1]){
@@ -304,7 +301,6 @@ function Snake(body, course)
 					var b = that.body[i][1];
 					var n = a * 20 - 21 + b;
 					if(rand == n) continue top;
-
 					
 			}
 			
