@@ -13,7 +13,7 @@ $(document).ready(function()
 		$('#formDialog').dialog({
 			autoOpen: false,
 			modal: true,
-			position: 'center'
+			//position: 'center'
 		
 		});
 	});
