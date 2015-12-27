@@ -7,13 +7,13 @@ function Bullet(x,y,course){   // принимаем координаты жаб
 	this.alive = true;
 	this.course = course;
 	var that = this;
-	that.check;
+	that.checkSnake;
 	this.timer = setInterval(
 	
 	function(){
 		if(!game.indicatorGame) {
 			that.timer = clearInterval(that.timer);
-			that.check = clearInterval(that.check);
+			that.checkSnake = clearInterval(that.checkSnake);
 		} 
 		if(that.x == a && that.y == b){ a = 0; b = 0;}
 		else
@@ -22,26 +22,26 @@ function Bullet(x,y,course){   // принимаем координаты жаб
 	switch(that.course) {
      case 'up':  
         --that.x;
-		//if(that.check())
+		if(that.checkBullet())
 	    m1.setBulletVertCell(that.x,that.y);
 	
 		break;
 
 	case 'down': 
       ++that.x;
-	  //if(that.check())
+	  if(that.checkBullet())
 	  m1.setBulletVertCell(that.x,that.y);
 		break;
 		
     case 'left': 
       --that.y;
-	  //if(that.check())
+	  if(that.checkBullet())
 	  m1.setBulletHorizCell(that.x,that.y);
 		break;
 	
 	case 'right': 
       ++that.y;
-	  //if(that.check())
+	  if(that.checkBullet())
 	  m1.setBulletHorizCell(that.x,that.y);
 		break;
 		}
@@ -60,24 +60,28 @@ function Bullet(x,y,course){   // принимаем координаты жаб
 	}
 	, 1000);
 	
-	this.check = setInterval(function(){
-		if(that.x>20 || that.x<1 || that.y>20 || that.y<1 || m1.getRedCell(that.x,that.y) || apple.isFood(that.x,that.y)){
-			that.timer = clearInterval(that.timer);
-		    delete that.timer;
-			that.check = clearInterval(that.check);
-			delete that.check;
-		//	return false;
-		}
-		else if(game.snake.body[0][0] == that.x && game.snake.body[0][1] == that.y){ 
+	this.checkSnake = setInterval(function(){
+		if(game.snake.body[0][0] == that.x && game.snake.body[0][1] == that.y){ 
 			game.snake.kill();
 			that.timer = clearInterval(that.timer);
 		    delete that.timer;
-			that.check = clearInterval(that.check);
-			delete that.check;
+			that.checkSnake = clearInterval(that.checkSnake);
+			delete that.checkSnake;
 		}
 		//	return false;
 		//} else 
 			//return true;
 	}, 2);
+	
+	this.checkBullet = function(){
+		if(that.x>20 || that.x<1 || that.y>20 || that.y<1 || m1.getRedCell(that.x,that.y) || apple.isFood(that.x,that.y)){
+			that.timer = clearInterval(that.timer);
+		    delete that.timer;
+			that.checkSnake = clearInterval(that.checkSnake);
+			delete that.checkSnake;
+			return false;
+		}else
+			return true;
+	}
 	
 }
