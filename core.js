@@ -33,7 +33,7 @@ function Core()
 		that.indicatorGame = true;
 		
 		
-		alert($( "#speed" ).val());
+		//alert($( "#speed" ).val());
 		switch($( "#speed" ).val()){
 			case 'Medium':
 			timeCore = 600;
