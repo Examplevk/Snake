@@ -37,44 +37,47 @@ include_once('add.php');
     <![endif]-->
   </head>
   <body>
-    <div id="matrix1"></div>
-	<div id="scope">
-		<p><span id="score">Score:</span></p>
-		<p><span id="count">0</span></p>
-	</div>
-	<!--<div id="inputName">
-		<input type="text" id="nameField" value="Введите ваше имя"></input>
-		<button id="buttonName" type="submit">OK</button>
-	</div>-->
-	<div id="welcome">
-		<table>
-			<tr>
-			  <td>
-			   <h1>Welcome!</h1>
-			  </td>
-			</tr>
-	        <tr>
-			  <td>
-				<label for="speed">Select a speed</label>
-					<select name="speed" id="speed">				
-						<option>Slow</option>
-						<option selected="selected">Medium</option>
-						<option>Fast</option>				
-					</select>
-				</td>
-			</tr>
-			<tr>
-			  <td>
-				<input id="startButton" type="button" value="Play" onclick="showOfferDialog('#formDialog')">
-			  </td>
-			</tr>
-		</table>
-	</div>
-	<div id="formDialog">
-		<input type="text" id="nameField" placeholder="Input your name">
-		<button id="buttonName" type="submit">OK</button>
-	</div>
 
+    <div class="container">
+		    <div id="matrix1"></div>
+			<div id="scope">
+				<p><span id="score">Score:</span></p>
+				<p><span id="count">0</span></p>
+			</div>
+			<!--<div id="inputName">
+				<input type="text" id="nameField" value="Введите ваше имя"></input>
+				<button id="buttonName" type="submit">OK</button>
+			</div>-->
+			<div id="welcome">
+				<table>
+					<tr>
+					  <td>
+					   <h1>Welcome!</h1>
+					  </td>
+					</tr>
+			        <tr>
+					  <td>
+						<label for="speed">Select a speed</label>
+							<select name="speed" id="speed">				
+								<option>Slow</option>
+								<option selected="selected">Medium</option>
+								<option>Fast</option>				
+							</select>
+						</td>
+					</tr>
+					<tr>
+					  <td>
+						<!--<input id="startButton" type="button" value="Play" onclick="showOfferDialog('#formDialog')">-->
+						<button type="button" class="btn btn-info btn-lg" onclick="showOfferDialog('#formDialog')">Play</button>
+					  </td>
+					</tr>
+				</table>
+			</div>
+			<div id="formDialog">
+				<input type="text" id="nameField" placeholder="Input your name">
+				<button id="buttonName" class="btn btn-info btn-lg" type="submit">OK</button>
+			</div>
+	</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->

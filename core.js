@@ -106,7 +106,7 @@ function Core()
 	    that.timer = clearInterval(that.timer);
 		that.timerFrog = clearInterval(that.timerFrog);
 		//завершаем игру
-		$("#matrix1").css({"border": "2px solid blue", "text-align": "center", "color": "red"});
+		$("#matrix1").css({"outline": "2px solid blue", "text-align": "center", "color": "red"});
 		var countPlayer = $("#count").html();
 		
 			
@@ -123,7 +123,7 @@ function Core()
 	
 		
 		
-		$("#matrix1").html("<h1>Вы проиграли!</h1><h4>Ваш счет: "+countPlayer+"</h4><button id=\"restart\" type=\"submit\">Заново</button><button id=\"results\" type=\"submit\">Результаты</button>");
+		$("#matrix1").html("<h1>Вы проиграли!</h1><h4>Ваш счет: "+countPlayer+"</h4><div class=\"col-md-6 col-md-offset-3\"><button id=\"restart\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Заново</button><button id=\"results\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Результаты</button></div>");
 		//$("#scope").hide();
 		$( "#scope" ).effect( "explode", {}, 500);
 		$("#results").click(function(elem){
