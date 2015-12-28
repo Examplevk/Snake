@@ -48,7 +48,7 @@ function Core()
 		timeFrog = timeCore * 2;
 		that.start();
 		
-		$('#welcome').hide();
+		$('#wrap-index').hide();
 		
 	    $("#scope,#inputName").toggle();
 		$('#startButton').hide();
@@ -80,7 +80,7 @@ function Core()
 	this.start = function()
 	{	
 		count = 0;
-		//alert("Стартанули")
+		
 		clearInterval(that.timer);                               // Пересмотреть таймера, не всегда срабатывает килл  и можно съесть себя(вниз и назад)		
 		clearInterval(that.timerFrog);                           
 		that.timer = setInterval( function(){					  
@@ -106,7 +106,7 @@ function Core()
 	    that.timer = clearInterval(that.timer);
 		that.timerFrog = clearInterval(that.timerFrog);
 		//завершаем игру
-		$("#matrix1").css({"outline": "2px solid blue", "text-align": "center", "color": "red"});
+		$("#matrix1").css({"outline": "2px solid #5bc0de", "text-align": "center", "color": "red"});
 		var countPlayer = $("#count").html();
 		
 			

@@ -4,19 +4,7 @@
 $(document).ready(function()
 {   $("#scope,#matrix1").hide();
 	$('#formDialog').hide();
-	
-	window.showOfferDialog = function(form){
-		$(form).dialog('open');
-	}
-	
-	$(function(){
-		$('#formDialog').dialog({
-			autoOpen: false,
-			modal: true,
-			//position: 'center'
 		
-		});
-	});
 	$( "#speed" ).selectmenu();
 	
 	$('#buttonName').click(function(){
@@ -28,14 +16,10 @@ $(document).ready(function()
 				function(data) {
 					
 					if(data == 'empty')
-					{
-						$('#resultOffer').html('<span style="color: green; font-weight: bold;">Заявка успешко оформлена!</span>');
-						$('#formDialog').fadeOut(1000);
-						setTimeout(function(){$('#formDialog').dialog('close');
+					{						
+						$('#formDialog').fadeOut(1000);						
 						game = new Core;
-	                    game.load();
-						}, 1000);
-						
+	                    game.load();												
 					}
 					else
 					{

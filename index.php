@@ -44,38 +44,53 @@ include_once('add.php');
 				<p><span id="score">Score:</span></p>
 				<p><span id="count">0</span></p>
 			</div>
-			<!--<div id="inputName">
-				<input type="text" id="nameField" value="Введите ваше имя"></input>
-				<button id="buttonName" type="submit">OK</button>
-			</div>-->
-			<div id="welcome">
-				<table>
-					<tr>
-					  <td>
-					   <h1>Welcome!</h1>
-					  </td>
-					</tr>
-			        <tr>
-					  <td>
-						<label for="speed">Select a speed</label>
-							<select name="speed" id="speed">				
-								<option>Slow</option>
-								<option selected="selected">Medium</option>
-								<option>Fast</option>				
-							</select>
-						</td>
-					</tr>
-					<tr>
-					  <td>
-						<!--<input id="startButton" type="button" value="Play" onclick="showOfferDialog('#formDialog')">-->
-						<button type="button" class="btn btn-info btn-lg" onclick="showOfferDialog('#formDialog')">Play</button>
-					  </td>
-					</tr>
-				</table>
-			</div>
-			<div id="formDialog">
-				<input type="text" id="nameField" placeholder="Input your name">
-				<button id="buttonName" class="btn btn-info btn-lg" type="submit">OK</button>
+			<div class="col-xs-12" id="wrap-index">
+				<div id="index-img" class="visible-lg"></div>	
+				<div id="welcome" class="col-xs-4 col-xs-offset-4">
+					<table class="col-xs-12">
+						<tr>
+						  <td>
+						   <h1>Welcome!</h1>
+						  </td>
+						</tr>
+						<tr>
+						  <td>
+							<label for="speed">Select a speed</label>
+								<select name="speed" id="speed">				
+									<option>Slow</option>
+									<option selected="selected">Medium</option>
+									<option>Fast</option>				
+								</select>
+							</td>
+						</tr>
+						<tr>
+						  <td>						
+							<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#formDialog">Play</button>
+						  </td>
+						</tr>
+					</table>
+				</div>
+			</div>	
+			<div class="modal fade" id="formDialog" tabindex="-1" role="dialog" >
+			  <div class="modal-dialog" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h3 class="modal-title" id="exampleModalLabel">Input your name</h3>
+				  </div>
+				  <div class="modal-body">
+					<form>
+					  <div class="form-group">
+						<input type="text" class="form-control" id="nameField">
+					  </div>					  
+					</form>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
+					<button id="buttonName" type="button" class="btn btn-info btn-lg" data-dismiss="modal">Send</button>
+				  </div>
+				</div>
+			  </div>
 			</div>
 	</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) 
