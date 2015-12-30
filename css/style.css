@@ -31,7 +31,16 @@ table{
 }
 table.rules-tbl  tr  td{
 	padding: 10px;
-}	
+}
+table#results-tbl{
+	height: 160px;
+}
+td.left-col{
+	text-align: left;
+}
+td.right-col{
+	text-align: right;
+}		
 .rules-img{
 	height: 158px;
 	width: auto;

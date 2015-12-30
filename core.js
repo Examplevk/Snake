@@ -204,10 +204,10 @@ function Core()
 		}   
 		};*/
 		$("#resultsUser").remove();	
-		$("#matrix1").append("<div id=\"resultsUser\"></div>");
+		$("#matrix1").append("<div id=\"resultsUser\" class=\"col-xs-12\"><table id=\"results-tbl\" class=\"col-xs-8 col-xs-offset-2\"></table></div>");
 		for(var j = 0; j < 5 ;j++){
 			
-			$("#resultsUser").append("<p>Name: "+msgs[j]['name']+"________ Score: "+msgs[j]['score']+"</p>");
+			$("#results-tbl").append("<tr><td class=\"left-col\">"+msgs[j]['name']+"</td><td class=\"right-col\">"+msgs[j]['score']+"</td></tr>");
 			
 		};
 		
