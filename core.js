@@ -108,7 +108,7 @@ function Core()
 	    that.timer = clearInterval(that.timer);
 		that.timerFrog = clearInterval(that.timerFrog);
 		//завершаем игру
-		$("#matrix1").css({"outline": "2px solid #5bc0de", "text-align": "center", "color": "red"});
+		$("#matrix1").css({"text-align": "center", "color": "red"});
 		var countPlayer = $("#count").html();
 		
 			
