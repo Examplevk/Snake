@@ -21,6 +21,7 @@ include_once('add.php');
 	<script language="javascript" src="frog.js"></script>
 	<script language="javascript" src="bullet.js"></script>
 	<script language="javascript" src="Food.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,7 +37,7 @@ include_once('add.php');
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body ng-app>
 
     <div class="container">
 		    <div id="matrix1"></div>
@@ -65,18 +66,39 @@ include_once('add.php');
 						</tr>
 						<tr>
 						  <td>						
-							<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#formDialog">Play</button>
+							<button type="button" class="btn btn-info btn-lg btn-block index-btn" data-toggle="modal" data-target="#formDialog">Play</button>
+							<button type="button" class="btn btn-info btn-lg btn-block index-btn" data-toggle="modal" data-target="#rules">Rules</button>
 						  </td>
 						</tr>
 					</table>
 				</div>
-			</div>	
+			</div>
+			<div class="modal fade" id="rules" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h3 class="modal-title text-uppercase" id="myModalLabel">rules of the game</h3>
+				  </div>
+				  <div>
+					<table class="rules-tbl col-xs-12">
+						<tr><td><h4>Goal of the game as much as possible to eat more apples.</h4></td><td><img src="/ico/apple-big.png" class="rules-img"></td></tr>
+						<tr><td><h4>To move use the arrow keys on your keyboard.</h4></td><td><img src="/ico/keyboard.png" class="rules-img"></td></tr>
+						<tr><td><h4>Beware hedgehog and his shots to the head. And don't go over the edge.</h4></td><td><img src="/ico/hedgehog.png" class="rules-img"></td></tr>
+					</table>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>					
+				  </div>
+				</div>
+			  </div>
+			</div>
 			<div class="modal fade" id="formDialog" tabindex="-1" role="dialog" >
 			  <div class="modal-dialog" role="document">
 				<div class="modal-content">
 				  <div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h3 class="modal-title" id="exampleModalLabel">Input your name</h3>
+					<h3 class="modal-title text-uppercase" id="exampleModalLabel">Input your name</h3>
 				  </div>
 				  <div class="modal-body">
 					<form>
@@ -86,8 +108,8 @@ include_once('add.php');
 					</form>
 				  </div>
 				  <div class="modal-footer">
-					<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
-					<button id="buttonName" type="button" class="btn btn-info btn-lg" data-dismiss="modal">Send</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button id="buttonName" type="button" class="btn btn-info" data-dismiss="modal">Send</button>
 				  </div>
 				</div>
 			  </div>

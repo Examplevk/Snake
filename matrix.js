@@ -149,6 +149,6 @@ function Matrix(containerId, rows, cols)
 		else 
 			false;
 		
-	}
+	}	
 }
 		

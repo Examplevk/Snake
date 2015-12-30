@@ -84,7 +84,9 @@ function Core()
 		clearInterval(that.timer);                               // Пересмотреть таймера, не всегда срабатывает килл  и можно съесть себя(вниз и назад)		
 		clearInterval(that.timerFrog);                           
 		that.timer = setInterval( function(){					  
-			if(!that.snake.alive)			that.gameover();
+			if(!that.snake.alive){				
+				that.gameover();
+			}			
 			that.snake.move(that.snake.course);	
             if(wX == that.snake.body[0][0] && wY == that.snake.body[0][1] ) that.snake.kill();			
 			
