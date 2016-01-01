@@ -2,15 +2,13 @@
 // Точка входа.
 //
 $(document).ready(function()
-{   $("#scope,#matrix1").hide();
-	$('#formDialog').hide();
+{   $("#scope,#matrix1,#formDialog").hide();	
 		
 	$( "#speed" ).selectmenu();
 	
 	$('#buttonName').click(function(){
 	
 		var m_name = $('#nameField').val();
-		
 	
 		$.post("add.php", {name: m_name},
 				function(data) {
@@ -27,14 +25,7 @@ $(document).ready(function()
 					}
 		});
 	});
-	
-	
-	
-	
-	
-	
-	
-	
+
 	window.onkeydown = function (event) 
 	{		
 		switch(event.keyCode)

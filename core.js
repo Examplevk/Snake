@@ -31,9 +31,7 @@ function Core()
 		apple.newFood();
 		//m1.setCellforFood(150);
 		that.indicatorGame = true;
-		
-		
-		//alert($( "#speed" ).val());
+				
 		switch($( "#speed" ).val()){
 			case 'Medium':
 			timeCore = 600;
@@ -48,13 +46,11 @@ function Core()
 		timeFrog = timeCore * 2;
 		that.start();
 		
-		$('#wrap-index').hide();
+		$('#wrap-index,#startButton').hide();
 		
-	    $("#scope,#inputName").toggle();
-		$('#startButton').hide();
+	    $("#scope,#inputName").toggle();		
 		
-		$( "#matrix1" ).draggable();
-		$( "#scope" ).draggable();
+		$( "#matrix1,#scope" ).draggable();	
 		 runEffect();
 	
 		function runEffect(){
@@ -65,16 +61,7 @@ function Core()
             );
 		};
 		
-		that.startWorker();
-	    
-		
-	    
-		
-		
-		
-		/*
-		   простор для фантазии, что вы ещё хотите делать при подгрузке игры (например, сразу нарисуйте фрукт)
-		*/
+		that.startWorker();		
 	}
 
 	this.start = function()
@@ -114,19 +101,16 @@ function Core()
 			
 		$.post("add.php",
 				{score: countPlayer}, 
-				//function(data){
-				//		$("#matrix1")
-				//					.append("</hr>DAts: " + data);
-				//	},
-				"html" // "xml", "script", "json", "jsonp", "text"
+				"html" 
 				);
-		
-        		
 	
-		
-		
-		$("#matrix1").html("<h1>Вы проиграли!</h1><h4>Ваш счет: "+countPlayer+"</h4><div class=\"col-md-6 col-md-offset-3\"><button id=\"restart\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Заново</button><button id=\"results\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Результаты</button></div>");
-		//$("#scope").hide();
+		$("#matrix1").html("<h1>Вы проиграли!</h1>"+
+								"<h4>Ваш счет: "+countPlayer+"</h4>"+
+								   "<div class=\"col-md-6 col-md-offset-3\">"+
+										"<button id=\"restart\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Заново</button>"+
+										"<button id=\"results\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Результаты</button>"+
+									"</div>");
+									
 		$( "#scope" ).effect( "explode", {}, 500);
 		$("#results").click(function(elem){
 		$.post("get.php",
@@ -140,14 +124,9 @@ function Core()
 
 		
 	});
-		$("#restart").click(function(){
-			
-			//game = new Core();
+		$("#restart").click(function(){					
 			game.load();
-			that.start();
-			//$("#scope,#matrix1").show();
-			
-			//$( "#scope,#matrix1" ).effect( "slide", {}, 500);
+			that.start();			
 			$("#count").html("0");
 			
 		});
@@ -160,17 +139,12 @@ function Core()
 				availableTags[i] = msgs[i]['name'];
 				
 			}
-			
-		
-		    $("#findUser").autocomplete({
+	    $("#findUser").autocomplete({
 			   source: availableTags,
 			   
 			   select: function( event, ui ) {
 				   
-				 
-				   
 				   var userProfile = ui.item.value;
-				  
 		            $("#resultsUser").empty(); 
 					for(var l = 0; l < msgs.length; l++){
 						var tempProfile = msgs[l]['name'];
@@ -180,40 +154,20 @@ function Core()
 				
 					};
 			 }
-			});
-		
-		/*for(var k = msgs.length - 1; k >=2; k-- ){       //Сортировка пузырьком
-	
-		var sorted = true;
-	
-		for(var i = 0; i<k; i++){
-			var temp1 = msgs[i];
-			var temp2 = msgs[i + 1];
-			if(parseInt(temp1['score']) < parseInt(temp2['score'])){
-		
-				var temp = msgs[i+1];
-				msgs[i+1] = msgs[i];
-				msgs[i] = temp;
-				sorted = false;
-			}
-	
-	
-		}
-		if(sorted) {
-        break;
-		}   
-		};*/
+			});		
 		$("#resultsUser").remove();	
-		$("#matrix1").append("<div id=\"resultsUser\" class=\"col-xs-12\"><table id=\"results-tbl\" class=\"col-xs-8 col-xs-offset-2\"></table></div>");
+		
+		$("#matrix1").append("<div id=\"resultsUser\" class=\"col-xs-12\">"+
+								"<table id=\"results-tbl\" class=\"col-xs-8 col-xs-offset-2\">"+
+								"</table>"+
+							"</div>");
 		for(var j = 0; j < 5 ;j++){
 			
-			$("#results-tbl").append("<tr><td class=\"left-col\">"+msgs[j]['name']+"</td><td class=\"right-col\">"+msgs[j]['score']+"</td></tr>");
-			
-		};
-		
-		
+			$("#results-tbl").append("<tr>"+
+										"<td class=\"left-col\">"+msgs[j]['name']+"</td><td class=\"right-col\">"+msgs[j]['score']+"</td>"+
+									"</tr>");			
+		};	
 	}
-	
 	//Workers
 	this.startWorker = function() {
     if(typeof(Worker) !== "undefined") {
@@ -242,30 +196,32 @@ function Core()
 	
 	
 	this.cmdRight = function()
-	{
-		if(that.snake.course == 'left') {}else
-		that.snake.course = 'right';
+	{		
+		that.changeSnakeCourse('left','right');
 		//меняем курс змеи вправо, если это возможно
 	}
 	
 	this.cmdLeft = function()
-	{
-		if(that.snake.course == 'right') {}else
-		that.snake.course = 'left';
+	{		
+		that.changeSnakeCourse('right','left');
 		//меняем курс змеи влево, если это возможно
 	}
 	
 	this.cmdUp = function()
-	{
-		if(that.snake.course == 'down') {}else
-		that.snake.course = 'up';
+	{		
+		that.changeSnakeCourse('down','up');
 		//меняем курс змеи вверх, если это возможно
 	}
 	
 	this.cmdDown = function()
-	{
-		if(that.snake.course == 'up') {}else
-		that.snake.course = 'down';
+	{		
+		that.changeSnakeCourse('up','down');
 		//меняем курс змеи вниз, если это возможно
+	}
+	
+	this.changeSnakeCourse = function(currentCourse, newCourse){
+		
+		if(that.snake.course == currentCourse) {}else
+		that.snake.course = newCourse;
 	}
 }

@@ -22,41 +22,24 @@ function Bullet(x,y,course){   // принимаем координаты жаб
 	switch(that.course) {
      case 'up':  
         --that.x;
-		if(that.checkBullet())
-	    m1.setBulletVertCell(that.x,that.y);
-	
+		that.setBullet('vert');	
 		break;
 
 	case 'down': 
       ++that.x;
-	  if(that.checkBullet())
-	  m1.setBulletVertCell(that.x,that.y);
+	  that.setBullet('vert');
 		break;
 		
     case 'left': 
       --that.y;
-	  if(that.checkBullet())
-	  m1.setBulletHorizCell(that.x,that.y);
+	  that.setBullet('horiz');
 		break;
 	
 	case 'right': 
       ++that.y;
-	  if(that.checkBullet())
-	  m1.setBulletHorizCell(that.x,that.y);
+	  that.setBullet('horiz');
 		break;
 		}
-		
-		/*if(that.x>20 || that.x<1 || that.y>20 || that.y<1 || m1.getRedCell(that.x,that.y) || apple.isFood(that.x,that.y)){
-			that.timer = clearInterval(that.timer);
-		    delete that.timer;
-		}
-		else if(game.snake.body[0][0] == that.x && game.snake.body[0][1] == that.y){ 
-			game.snake.kill();
-		}
-		//else 
-		//     m1.setHeadCell(that.x,that.y); */
-	    
-		 
 	}
 	, 1000);
 	
@@ -82,6 +65,14 @@ function Bullet(x,y,course){   // принимаем координаты жаб
 			return false;
 		}else
 			return true;
+	}
+	this.setBullet = function(plane){
+		if(that.checkBullet()){
+			if(plane == 'horiz')
+				m1.setBulletHorizCell(that.x,that.y);
+			else
+				m1.setBulletVertCell(that.x,that.y);
+		}	    
 	}
 	
 }

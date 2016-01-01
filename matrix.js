@@ -12,6 +12,8 @@ function Matrix(containerId, rows, cols)
 	// число столбцов
 	this.cols = cols;
 	
+	var that = this;
+	
 	// создание сетки
 	this.create = function()
 	{
@@ -38,18 +40,11 @@ function Matrix(containerId, rows, cols)
 	
 		var cell = matrix.children[n];
 	
-		if(cell.style.background == 'url(ico/apple.jpg)'){
-			return true;
-		} else{
-			return false;
-		}
-	}
+		return cell;
+	} 
 	this.getRedCell = function(row, col){
-		var n = row * 20 - 21 + col;
-	
-	    var matrix = document.getElementById(this.containerId);
-	
-		var cell = matrix.children[n];
+		
+		var cell = that.getCell(row,col);
 	
 		if(cell.style.background == 'red'){
 			return true;
@@ -61,10 +56,8 @@ function Matrix(containerId, rows, cols)
 	// установить значение €чейки
 	this.setCell = function(row, col, val)
 	{
-		var ind = (row - 1) * this.cols + col - 1;
-		var matrix = document.getElementById(this.containerId);
-		var cell = matrix.children[ind];	
-		//cell.className = (val ? 'cell on' : 'cell');
+		var cell = that.getCell(row,col);	
+		
 		if(val)
 			cell.style.background = 'red';
 		else 
@@ -76,18 +69,14 @@ function Matrix(containerId, rows, cols)
 		
 		var matrix = document.getElementById(this.containerId);
 		var cell = matrix.children[n];	
-		//cell.className = (val ? 'cell on' : 'cell');
-		
+				
 			cell.style.background = 'url(ico/apple.jpg)';
 		
 		
 	}	
 	this.setHeadCell = function(row,col){
-		var n = row * 20 - 21 + col;
-	
-	    var matrix = document.getElementById(this.containerId);
-	
-		var cell = matrix.children[n];
+		
+		var cell = that.getCell(row,col);
 		
 		cell.style.background = '#7A0808';
 		
@@ -95,11 +84,7 @@ function Matrix(containerId, rows, cols)
 	this.getHeadCell = function(row, col)
 	{
 		
-		var n = row * 20 - 21 + col;
-	
-	    var matrix = document.getElementById(this.containerId);
-	
-		var cell = matrix.children[n];
+		var cell = that.getCell(row,col);
 	
 		if(cell.style.background == '#7A0808')
 			return true;
@@ -109,46 +94,36 @@ function Matrix(containerId, rows, cols)
 	}
 	
 	this.setBombCell = function(row,col){
-		var n = row * 20 - 21 + col;
-	
-	    var matrix = document.getElementById(this.containerId);
-	
-		var cell = matrix.children[n];
+		
+		var cell = that.getCell(row,col);
 		
 		cell.style.background = 'url(ico/bomb.jpg)';
 		
 	}
 	this.setBulletVertCell = function(row,col){
-		var n = row * 20 - 21 + col;
-	
-	    var matrix = document.getElementById(this.containerId);
-	
-		var cell = matrix.children[n];
+		
+		var cell = that.getCell(row,col);
 		
 		cell.style.background = 'url(ico/KopieVert.jpg)';
 		
 	}
 	this.setBulletHorizCell = function(row,col){
-		var n = row * 20 - 21 + col;
-	
-	    var matrix = document.getElementById(this.containerId);
-	
-		var cell = matrix.children[n];
+		
+		var cell = that.getCell(row,col);
 		
 		cell.style.background = 'url(ico/KopieHoriz.jpg)';
 		
 	}
 	this.isCellEmpty = function(row,col){
-		var n = row * 20 - 21 + col;
-	
-	    var matrix = document.getElementById(this.containerId);
-	
-		var cell = matrix.children[n];
+		
+		var cell = that.getCell(row,col);
+		
 		if(cell.style.background = 'white')
 			return true;
 		else 
 			false;
 		
-	}	
+	}
+	
 }
 		

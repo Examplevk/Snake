@@ -17,24 +17,21 @@ function Snake(body, course)
 	
 	var that = this;
 	
+	var LastX;
+	var LastY;
+	
 	this.create = function()
 	{
-		
-		
-		//???????????? ??????
-		that.manifestation();
+			that.manifestation();
 	} 
-	
-	
-	
-	
+
 	this.move = function(event)
  	{	
 		that.eated = false;
 						
 		var last_body = that.body;
-		var LastX = last_body[last_body.length-1][0];
-		var LastY = last_body[last_body.length-1][1];
+		LastX = last_body[last_body.length-1][0];
+		LastY = last_body[last_body.length-1][1];
 		
 		
 		switch(event)
@@ -47,44 +44,26 @@ function Snake(body, course)
 			
 			//delete Snake from area
 			that.deleteSnake(last_body);
-				if(that.body[0][1] + 1 > 20){
-					that.kill();
-					break;
-				}else{
-						if(apple.isFood(that.body[0][0],that.body[0][1] + 1)){
-							that.eat(LastX,LastY);
-						}
-				}	
-			for(var i = that.body.length-1; i > 0; i--){
-				that.body[i] = that.body[i-1];
-				if(i == 1){
-					var temp = [that.body[0][0],that.body[0][1]];
-			        that.body[1] = temp;					
-			        ++that.body[0][1];
-					for(var k = 1; k<that.body.length; k++){
-						if(that.body[0][0] == that.body[k][0]&& that.body[0][1] == that.body[k][1] || that.body[0][0] == LastX && that.body[0][1] == LastY){
-							//alert("You lose");
-							that.kill();
-							
-							break;
-						}
-					}
-					
-				}
-                   
-			}
 			
-		        //???????????? ??????
+			if(that.body[0][1] + 1 > 20){
+				that.kill();
+				break;
+			}else{
+					if(apple.isFood(that.body[0][0],that.body[0][1] + 1)){
+						that.eat(LastX,LastY);
+					}
+			}	
+						
+			that.checkSnake(1,'increase');
+			
 				that.manifestation();
 			   if(that.eated){
 					apple.newFood();
 				}
-			
-			
+						
 			break;	
 			case 'left':
-			
-			
+						
 			if(that.course == 'right')
 				break;
 			that.course = 'left';
@@ -99,30 +78,10 @@ function Snake(body, course)
 				if(apple.isFood(that.body[0][0],that.body[0][1] - 1)){
 						that.eat(LastX,LastY);
 					}	
-				}	
-			for(var i = that.body.length-1; i > 0; i--){
-				that.body[i] = that.body[i-1];
-				if(i == 1){
-					var temp = [that.body[0][0],that.body[0][1]];
-			        that.body[1] = temp;					
-			        --that.body[0][1];
-					for(var k = 1; k<that.body.length; k++){
-						if(that.body[0][0] == that.body[k][0]&& that.body[0][1] == that.body[k][1] || that.body[0][0] == LastX && that.body[0][1] == LastY){
-							//alert("You lose");
-							that.kill();
-							
-							break;
-						}
-					}
-					
-				}
-                   
-			}
+				}				
 			
-			
-			
-			
-			    //???????????? ??????
+			that.checkSnake(1,'decrease');
+					   
 				that.manifestation();
 			   if(that.eated){
 					apple.newFood();
@@ -146,38 +105,13 @@ function Snake(body, course)
 							that.eat(LastX,LastY);
 				}
 			}
-			for(var i = that.body.length-1; i > 0; i--){
-				that.body[i] = that.body[i-1];
-				if(i == 1){
-					var temp = [that.body[0][0],that.body[0][1]];
-			        that.body[1] = temp;					
-			        ++that.body[0][0]>20					
-					//alert(that.body[0][0]+" , "+that.body[0][1]);
-					for(var k = 1; k<that.body.length; k++){
-						if(that.body[0][0] == that.body[k][0]&& that.body[0][1] == that.body[k][1] || that.body[0][0] == LastX && that.body[0][1] == LastY){
-							//alert("You lose");
-							that.kill();
-							
-							break;
-						}
-					}
-					
-				}
-                   
-			}
-			
-			
-			
-			
-			
-			
-			
-			    //???????????? ??????
+						
+			that.checkSnake(0,'increase');
+			    
 				that.manifestation();
 				if(that.eated){
 					apple.newFood();
-				}
-			
+				}			
 			
 			break;
 			case 'up':
@@ -197,26 +131,9 @@ function Snake(body, course)
 						  that.eat(LastX,LastY);
 					}
 				}	
-			for(var i = that.body.length-1; i > 0; i--){
-				that.body[i] = that.body[i-1];
-				if(i == 1){
-					var temp = [that.body[0][0],that.body[0][1]];
-			        that.body[1] = temp;					
-			        --that.body[0][0];
-					for(var k = 1; k<that.body.length; k++){
-						if(that.body[0][0] == that.body[k][0]&& that.body[0][1] == that.body[k][1] || that.body[0][0] == LastX && that.body[0][1] == LastY){
-							//alert("You lose");
-							that.kill();
-							
-							break;
-						}
-					}
-					
-				}
-                   
-			}
-			
-			    //???????????? ??????
+		
+			that.checkSnake(0,'decrease');
+			    
 				that.manifestation();
 			
 			if(that.eated){
@@ -225,17 +142,27 @@ function Snake(body, course)
 			
 			break;
 		}
-		
-		
-		
-		
-		/* ?????????, 
-		   ? ???????? ????????? ????? ? ??????? ??????.
-		   ?????? ?????????? ???? ????.
-		   ???? ? ????? ??? ????? - ???????? ????? eat.
-		   ???? ?? ????? ??? ???? ???? - ???????.
-		   ?????????????? ?????? */
+
 	}	
+	this.checkSnake = function(coord,change){
+		
+		for(var i = that.body.length-1; i > 0; i--){
+				that.body[i] = that.body[i-1];
+				if(i == 1){
+					var temp = [that.body[0][0],that.body[0][1]];
+			        that.body[1] = temp;					
+			        if(change == 'decrease')--that.body[0][coord]; else ++that.body[0][coord];
+					for(var k = 1; k<that.body.length; k++){
+						if(that.body[0][0] == that.body[k][0]&& that.body[0][1] == that.body[k][1] || that.body[0][0] == LastX && that.body[0][1] == LastY){
+							//alert("You lose");
+							that.kill();
+							
+							break;
+						}
+					}					
+				}                   
+		}			
+	}
 	
 	this.eat = function(x,y)
 	{	
@@ -269,18 +196,13 @@ function Snake(body, course)
 				that.body.push([that.body[that.body.length-1][0] + 1,that.body[that.body.length-1][1]]);
 				}
 			}
-		}
-	
+		}	
 	
 	    var count = $('#count').html();
 		
 		var tempCount = parseInt(count) + 10;
 		$('#count').html(tempCount)
-		
-	     
-		
-		
-		
+	
 		that.eated = true;
 	}	
 	
@@ -289,28 +211,7 @@ function Snake(body, course)
 		that.alive = false;
 		
 	}	
-	
-	/*this.randomFood = function(){
-		
-		top:
-		do{
-			var rand = Math.floor(Math.random()*400);
-			
-			for(var i = 0; i<that.body.length; i++){
-				    var a = that.body[i][0];
-					var b = that.body[i][1];
-					var n = a * 20 - 21 + b;
-					if(rand == n) continue top;
-					
-			}
-			
-		    
-			    m1.setCellforFood(rand);
-			   break;
-		   
-		  }while(true);
-		  
-	} */
+
 	this.manifestation = function(){
 		m1.setHeadCell(that.body[0][0], that.body[0][1]);
 		for(var i = 1; i<that.body.length; i++){
