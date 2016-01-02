@@ -21,6 +21,7 @@ include_once('add.php');
 	<script language="javascript" src="frog.js"></script>
 	<script language="javascript" src="bullet.js"></script>
 	<script language="javascript" src="Food.js"></script>
+	<script language="javascript" src="score.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

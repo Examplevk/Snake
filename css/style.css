@@ -1,20 +1,16 @@
 #welcome{
-	/*position: absolute;
-	top: 100px;
-	width: 300px;
-	height: 300px;
-	margin: auto;*/
+	
 	border: 1px solid #5bc0de;
 	width: 300px;
 	margin-top: 100px;
 	
 }
 #index-img{
-	position: absolute; /* Абсолютное позиционирование */
-    width: 600px; /* Ширина левой колонки */
+	position: absolute; 
+    width: 600px; 
 	height: 425px;
-    background-image: url(/ico/snake-index.png); /* Цвет фона содержимого */
-    padding: 10px; /* Поля вокруг текста */
+    background-image: url(/ico/snake-index.png); 
+    padding: 10px; 
 	top: 145px;
     left: 175px;
 }

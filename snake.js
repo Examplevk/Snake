@@ -166,42 +166,45 @@ function Snake(body, course)
 	
 	this.eat = function(x,y)
 	{	
-	//?????????? ?????
-	    if(that.body[that.body.length-1][0] == that.body[that.body.length-2][0]){
+		var last_x = that.body[that.body.length-1][0];
+		var last_y = that.body[that.body.length-1][1];
+		
+		var penult_x = that.body[that.body.length-2][0];
+		var penult_y = that.body[that.body.length-2][1];
+		
+	    if(last_x == penult_x){
 			
-			if(that.body[that.body.length-1][1] > that.body[that.body.length-2][1]){
-				if(that.body[that.body.length-1][1] + 1 > 20){
+			if(last_y > penult_y){
+				if(last_y + 1 > 20){
 					that.body.push([x,y]);		
 				}else{
-				that.body.push([that.body[that.body.length-1][0],that.body[that.body.length-1][1] + 1]);
+				that.body.push([last_x,last_y + 1]);
 				}
 			} else{
-				if(that.body[that.body.length-1][1] - 1 < 1){
+				if(last_y - 1 < 1){
 					that.body.push([x,y]);
 				}else{
-				that.body.push([that.body[that.body.length-1][0],that.body[that.body.length-1][1] - 1]);
+				that.body.push([last_x,last_y - 1]);
 				}
 			}
 		} else{
-			if(that.body[that.body.length-1][0] < that.body[that.body.length-2][0]){
-				if(that.body[that.body.length-1][0] - 1 < 1){
+			if(last_x < penult_x){
+				if(last_x - 1 < 1){
 					that.body.push([x,y]);
 				}else{
-				that.body.push([that.body[that.body.length-1][0] - 1,that.body[that.body.length-1][1]]);
+				that.body.push([last_x - 1,last_y]);
 				}
 			} else{
-				if(that.body[that.body.length-1][0] + 1 > 20){
+				if(last_x + 1 > 20){
 					that.body.push([x,y]);
 				}else{
-				that.body.push([that.body[that.body.length-1][0] + 1,that.body[that.body.length-1][1]]);
+				that.body.push([last_x + 1,last_y]);
 				}
 			}
 		}	
 	
-	    var count = $('#count').html();
-		
-		var tempCount = parseInt(count) + 10;
-		$('#count').html(tempCount)
+	   
+		game.increaseScore();
 	
 		that.eated = true;
 	}	

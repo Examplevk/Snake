@@ -1,20 +1,20 @@
-//
-// Класс матрицы.
+п»ї//
+// РљР»Р°СЃСЃ РјР°С‚СЂРёС†С‹.
 //
 function Matrix(containerId, rows, cols)
 {
-	// id контейнера
+	// id РєРѕРЅС‚РµР№РЅРµСЂР°
 	this.containerId = containerId;
 	
-	// число строк
+	// С‡РёСЃР»Рѕ СЃС‚СЂРѕРє
 	this.rows = rows;
 	
-	// число столбцов
+	// С‡РёСЃР»Рѕ СЃС‚РѕР»Р±С†РѕРІ
 	this.cols = cols;
 	
 	var that = this;
 	
-	// создание сетки
+	// СЃРѕР·РґР°РЅРёРµ СЃРµС‚РєРё
 	this.create = function()
 	{
 		var matrix = document.getElementById(this.containerId);
@@ -30,7 +30,7 @@ function Matrix(containerId, rows, cols)
 		}
 	}
 	
-	// получить значение ячейки
+	// РїРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ СЏС‡РµР№РєРё
 	this.getCell = function(row, col)
 	{
 		
@@ -53,7 +53,7 @@ function Matrix(containerId, rows, cols)
 		}
 	}
 	
-	// установить значение ячейки
+	// СѓСЃС‚Р°РЅРѕРІРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ СЏС‡РµР№РєРё
 	this.setCell = function(row, col, val)
 	{
 		var cell = that.getCell(row,col);	
@@ -124,6 +124,28 @@ function Matrix(containerId, rows, cols)
 			false;
 		
 	}
-	
+	this.setGameOverBlock = function(score){
+		        $("#matrix1").css({"text-align": "center", "color": "red"});
+				$("#matrix1").html("<h1>Р’С‹ РїСЂРѕРёРіСЂР°Р»Рё!</h1>"+
+								"<h4>Р’Р°С€ СЃС‡РµС‚: "+score+"</h4>"+
+								   "<div class=\"col-md-6 col-md-offset-3\">"+
+										"<button id=\"restart\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Р—Р°РЅРѕРІРѕ</button>"+
+										"<button id=\"results\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Р РµР·СѓР»СЊС‚Р°С‚С‹</button>"+
+									"</div>");
+	}	
+	this.appendSearchField = function(){
+		$("#matrix1").append("<p><input type=\"text\" id=\"findUser\"/></p>");
+	}
+	this.addTableUsers = function(){
+		$("#matrix1").append("<div id=\"resultsUser\" class=\"col-xs-12\">"+
+								"<table id=\"results-tbl\" class=\"col-xs-8 col-xs-offset-2\">"+
+								"</table>"+
+							"</div>");
+	}
+	this.addUserToTable = function(name, score){
+		$("#results-tbl").append("<tr>"+
+										"<td class=\"left-col\">"+name+"</td><td class=\"right-col\">"+score+"</td>"+
+									"</tr>");
+	}
 }
 		

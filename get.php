@@ -1,20 +1,6 @@
 <?php
 session_start();
-/*$results = file('results.txt');
 
-
-$string = array();
-foreach($results as $result)
-{
-	$arr = explode(':', $result);
-	$array['name'] = $arr[0];
-	$array['score'] = $arr[1];
-	$string[] = $array;
-	
-	//echo '<p>' . $arr[0] . ' ________ ' . $arr[1] . 'очков</p>'; 
-}
-echo json_encode($string);
-*/
 // Настройки подключения к БД.
 	$hostname = 'sportbod.mysql.ukraine.com.ua'; 
 	$username = 'sportbod_db'; 

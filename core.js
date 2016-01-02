@@ -6,19 +6,18 @@ function Core()
 	this.snake;
 	this.timer;
 	this.timerFrog;
+	this.count = new Score();
 	
 	var bullet;
-	var count;
-	var w;  //frog
+	
+	var w;  //hedgehog
 	var wX = 15;
 	var wY = 15;
 	
 	var timeCore;
 	var timeFrog;
 	this.indicatorGame;
-	
-	// итд, переменных сколько вам нужно (можете вместо переменных использовать поля)
-	
+			
 	var that = this;
 	
 	this.load = function()
@@ -28,7 +27,7 @@ function Core()
 		that.snake = new Snake([[1,2],[1,1]]);
 		that.snake.create();
 		apple = new Food();
-		apple.newFood();
+		apple.newFood();		
 		//m1.setCellforFood(150);
 		that.indicatorGame = true;
 				
@@ -66,7 +65,7 @@ function Core()
 
 	this.start = function()
 	{	
-		count = 0;
+		that.count.reset();
 		
 		clearInterval(that.timer);                               // Пересмотреть таймера, не всегда срабатывает килл  и можно съесть себя(вниз и назад)		
 		clearInterval(that.timerFrog);                           
@@ -95,21 +94,15 @@ function Core()
 	    that.timer = clearInterval(that.timer);
 		that.timerFrog = clearInterval(that.timerFrog);
 		//завершаем игру
-		$("#matrix1").css({"text-align": "center", "color": "red"});
-		var countPlayer = $("#count").html();
 		
+		var countPlayer = that.count.getCount();
 			
 		$.post("add.php",
 				{score: countPlayer}, 
 				"html" 
 				);
-	
-		$("#matrix1").html("<h1>Вы проиграли!</h1>"+
-								"<h4>Ваш счет: "+countPlayer+"</h4>"+
-								   "<div class=\"col-md-6 col-md-offset-3\">"+
-										"<button id=\"restart\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Заново</button>"+
-										"<button id=\"results\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Результаты</button>"+
-									"</div>");
+		//set game over block		
+		m1.setGameOverBlock(countPlayer);							
 									
 		$( "#scope" ).effect( "explode", {}, 500);
 		$("#results").click(function(elem){
@@ -120,15 +113,14 @@ function Core()
 								'json'
 							);
 	    $("#findUser").remove();						
-		$("#matrix1").append("<p><input type=\"text\" id=\"findUser\"/></p>");
+		
+		m1.appendSearchField();
 
 		
 	});
 		$("#restart").click(function(){					
 			game.load();
-			that.start();			
-			$("#count").html("0");
-			
+			that.start();						
 		});
 	}
 	this.chatResults = function(msgs){
@@ -139,33 +131,34 @@ function Core()
 				availableTags[i] = msgs[i]['name'];
 				
 			}
+			
 	    $("#findUser").autocomplete({
 			   source: availableTags,
 			   
 			   select: function( event, ui ) {
 				   
 				   var userProfile = ui.item.value;
-		            $("#resultsUser").empty(); 
+		            $("#resultsUser").remove(); 
+					m1.addTableUsers();
 					for(var l = 0; l < msgs.length; l++){
 						var tempProfile = msgs[l]['name'];
+						
 						if(userProfile == tempProfile){
-							$("#resultsUser").append("<p>Name: "+msgs[l]['name']+"________ Score: "+msgs[l]['score']+"</p>");
+							
+							m1.addUserToTable(msgs[l]['name'],msgs[l]['score']);
+							
 							}
 				
 					};
 			 }
 			});		
 		$("#resultsUser").remove();	
+				
+		m1.addTableUsers();		
 		
-		$("#matrix1").append("<div id=\"resultsUser\" class=\"col-xs-12\">"+
-								"<table id=\"results-tbl\" class=\"col-xs-8 col-xs-offset-2\">"+
-								"</table>"+
-							"</div>");
 		for(var j = 0; j < 5 ;j++){
 			
-			$("#results-tbl").append("<tr>"+
-										"<td class=\"left-col\">"+msgs[j]['name']+"</td><td class=\"right-col\">"+msgs[j]['score']+"</td>"+
-									"</tr>");			
+			m1.addUserToTable(msgs[j]['name'],msgs[j]['score']);						
 		};	
 	}
 	//Workers
@@ -194,7 +187,10 @@ function Core()
 		w = undefined;
 	}
 	
-	
+	this.increaseScore = function(){
+		that.count.increase();
+	}
+		
 	this.cmdRight = function()
 	{		
 		that.changeSnakeCourse('left','right');
