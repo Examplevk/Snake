@@ -14,8 +14,8 @@ function Core()
 	var wX = 15;
 	var wY = 15;
 	
-	var timeCore;
-	var timeFrog;
+	var timeCore;	
+	var timeHedgehog;
 	this.indicatorGame;
 			
 	var that = this;
@@ -33,16 +33,16 @@ function Core()
 				
 		switch($( "#speed" ).val()){
 			case 'Medium':
-			timeCore = 600;
+			timeCore = 300;
 			break;
 			case 'Slow':
-			timeCore = 1000;
+			timeCore = 400;
 			break;
 			case 'Fast':
-			timeCore = 250;
+			timeCore = 200;
 			break;
 		}
-		timeFrog = timeCore * 2;
+		timeHedgehog = timeCore * 2;
 		that.start();
 		
 		$('#wrap-index,#startButton').hide();
@@ -81,7 +81,7 @@ function Core()
 		that.timerFrog = setInterval(function(){
 			w.postMessage(that.snake.body);	
 			m1.setCell(wX,wY,false);			
-		}, timeFrog);
+		}, timeHedgehog);
 	}
 	
 	this.gameover = function()
@@ -147,10 +147,9 @@ function Core()
 							
 							m1.addUserToTable(msgs[l]['name'],msgs[l]['score']);
 							
-							}
-				
+							}				
 					};
-			 }
+				}
 			});		
 		$("#resultsUser").remove();	
 				
@@ -165,7 +164,7 @@ function Core()
 	this.startWorker = function() {
     if(typeof(Worker) !== "undefined") {
         if(typeof(w) == "undefined") {
-            w = new Worker("frog.js");
+            w = new Worker("Hedgehog.js");
         }
         w.onmessage = function(event) {
 			wX = event.data[0];

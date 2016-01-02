@@ -18,7 +18,7 @@ include_once('add.php');
 	<script language="javascript" src="onload.js"></script>
 	<script language="javascript" src="core.js"></script>
 	<script language="javascript" src="snake.js"></script>
-	<script language="javascript" src="frog.js"></script>
+	<script language="javascript" src="hedgehog.js"></script>
 	<script language="javascript" src="bullet.js"></script>
 	<script language="javascript" src="Food.js"></script>
 	<script language="javascript" src="score.js"></script>
