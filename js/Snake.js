@@ -1,21 +1,16 @@
-﻿//
-// ????? ????
-//
+﻿
 function Snake(body, course)
 {
-	// ?????????? ????? ? ????????
+	//body is an array
 	this.body = body;
 	
 	this.head_x = this.body[0][0];
 	this.head_y = this.body[0][1];
-	
-	// ??????????? ????????
+		
 	this.course = course;
-
-	// ??????? ?????? ?????
-	this.eated = false;
 	
-	// ???? ?? ??????
+	this.eated = false;
+		
 	this.alive = true;
 	
 	var that = this;
@@ -25,7 +20,7 @@ function Snake(body, course)
 	
 	this.create = function()
 	{
-			that.manifestation();
+			that.drowingSnakeOnTheArea();
 	} 
 
 	this.move = function(event)
@@ -45,8 +40,8 @@ function Snake(body, course)
 			if(that.course == 'left')		break;
 			that.course = 'right';
 			
-			//delete Snake from area
-			that.deleteSnake(last_body);
+			
+			that.deleteSnakeFromArea(last_body);
 			
 			if(that.outputCheckSnake('y','more'))   		break;	
 				
@@ -54,7 +49,7 @@ function Snake(body, course)
 			
 			that.fullCheckSnake(1,'increase');
 			
-			that.manifestation();
+			that.drowingSnakeOnTheArea(); 
 			if(that.eated)		apple.newFood();
 			
 			break;	
@@ -64,8 +59,8 @@ function Snake(body, course)
 			
 			that.course = 'left';
 			
-			//delete Snake from area
-			that.deleteSnake(last_body);
+			
+			that.deleteSnakeFromArea(last_body);
 			
 			if(that.outputCheckSnake('y','less'))			break;
 			
@@ -73,7 +68,7 @@ function Snake(body, course)
 
 			that.fullCheckSnake(1,'decrease');
 					   
-			that.manifestation();
+			that.drowingSnakeOnTheArea();
 			if(that.eated)		apple.newFood();
 	
 			break;
@@ -81,8 +76,8 @@ function Snake(body, course)
 			
 			if(that.course == 'up') 	break;
 			that.course = 'down';
-			//delete Snake from area
-			that.deleteSnake(last_body);
+			
+			that.deleteSnakeFromArea(last_body);
 			
 			if(that.outputCheckSnake('x','more'))		break;
 				
@@ -90,7 +85,7 @@ function Snake(body, course)
 								
 			that.fullCheckSnake(0,'increase');
 			    
-			that.manifestation();
+			that.drowingSnakeOnTheArea();
 			if(that.eated)	apple.newFood();
 		
 			break;
@@ -100,8 +95,8 @@ function Snake(body, course)
 				
 			that.course = 'up';
 			
-			//delete Snake from area
-			that.deleteSnake(last_body);
+			
+			that.deleteSnakeFromArea(last_body);
 			
 			if(that.outputCheckSnake('x','less'))		break;								
 				
@@ -109,7 +104,7 @@ function Snake(body, course)
 
 		    that.fullCheckSnake(0,'decrease');
 			    
-			that.manifestation();
+			that.drowingSnakeOnTheArea();
 			
 			if(that.eated)	apple.newFood();
 	
@@ -216,14 +211,14 @@ function Snake(body, course)
 		
 	}	
 
-	this.manifestation = function(){
+	this.drowingSnakeOnTheArea = function(){
 		m1.setHeadCell(that.head_x, that.head_y);
 		for(var i = 1; i<that.body.length; i++){
 				
 				m1.setCell(that.body[i][0], that.body[i][1], true);
 			}
 	}
-    this.deleteSnake = function(preBody){
+    this.deleteSnakeFromArea = function(preBody){
 		
 		for(var i = 0; i<preBody.length; i++){
 				m1.setCell(preBody[i][0], preBody[i][1], false);

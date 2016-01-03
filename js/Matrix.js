@@ -1,20 +1,20 @@
 ﻿//
-// Класс матрицы.
+// Area
 //
 function Matrix(containerId, rows, cols)
 {
-	// id контейнера
+	
 	this.containerId = containerId;
 	
-	// число строк
+	// number of lines
 	this.rows = rows;
 	
-	// число столбцов
+	// number of columns
 	this.cols = cols;
 	
 	var that = this;
 	
-	// создание сетки
+	// creating the grid
 	this.create = function()
 	{
 		var matrix = document.getElementById(this.containerId);
@@ -30,7 +30,7 @@ function Matrix(containerId, rows, cols)
 		}
 	}
 	
-	// получить значение ячейки
+	// get the value of a cell
 	this.getCell = function(row, col)
 	{
 		
@@ -53,7 +53,7 @@ function Matrix(containerId, rows, cols)
 		}
 	}
 	
-	// установить значение ячейки
+	// set the value of a cell
 	this.setCell = function(row, col, val)
 	{
 		var cell = that.getCell(row,col);	

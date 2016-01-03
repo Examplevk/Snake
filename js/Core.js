@@ -1,5 +1,5 @@
 ﻿//
-// Ядро
+// Core
 function Core()
 {
 	
@@ -24,11 +24,13 @@ function Core()
 	{
 		m1 = new Matrix('matrix1', 20, 20);
 		m1.create();
+		
 		that.snake = new Snake([[1,2],[1,1]]);
 		that.snake.create();
+		
 		apple = new Food();
 		apple.newFood();		
-		//m1.setCellforFood(150);
+		
 		that.indicatorGame = true;
 				
 		switch($( "#speed" ).val()){
@@ -90,8 +92,7 @@ function Core()
 	    delete that.snake;
 		delete bullet;
 	    that.timerGame = clearInterval(that.timerGame);
-		that.timerHedgehog = clearInterval(that.timerHedgehog);
-		//завершаем игру
+		that.timerHedgehog = clearInterval(that.timerHedgehog);		
 		
 		var countPlayer = that.count.getCount();
 			
@@ -99,7 +100,7 @@ function Core()
 				{score: countPlayer}, 
 				"html" 
 				);
-		//set game over block		
+			
 		m1.setGameOverBlock(countPlayer);							
 									
 		$( "#scope" ).effect( "explode", {}, 500);
@@ -167,7 +168,7 @@ function Core()
         hedgehog.onmessage = function(event) {
 			hedgehogX = event.data[0];
 			hedgehogY = event.data[1];
-			//if(hedgehogX == that.snake.body[0][0] && hedgehogY == that.snake.body[0][1] ) that.snake.kill();
+			
           m1.setBombCell(hedgehogX,hedgehogY);
 		  if(event.data[2]){
 			  bullet = new Bullet(event.data[0],event.data[1],event.data[3]);

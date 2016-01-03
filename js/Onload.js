@@ -1,5 +1,5 @@
 //
-// Точка входа.
+// point of entry
 //
 $(document).ready(function()
 {   $("#scope,#matrix1,#formDialog").hide();	
