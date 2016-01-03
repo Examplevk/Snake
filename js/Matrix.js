@@ -46,7 +46,7 @@ function Matrix(containerId, rows, cols)
 		
 		var cell = that.getCell(row,col);
 	
-		if(cell.style.background == 'red'){
+		if(cell.style.background == '#e11a64'){
 			return true;
 		} else{
 			return false;
@@ -59,7 +59,7 @@ function Matrix(containerId, rows, cols)
 		var cell = that.getCell(row,col);	
 		
 		if(val)
-			cell.style.background = 'red';
+			cell.style.background = '#e11a64';
 		else 
 			cell.style.background = 'white';
 		
@@ -125,13 +125,13 @@ function Matrix(containerId, rows, cols)
 		
 	}
 	this.setGameOverBlock = function(score){
-		        $("#matrix1").css({"text-align": "center", "color": "red"});
-				$("#matrix1").html("<h1>Вы проиграли!</h1>"+
-								"<h4>Ваш счет: "+score+"</h4>"+
-								   "<div class=\"col-md-6 col-md-offset-3\">"+
-										"<button id=\"restart\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Заново</button>"+
-										"<button id=\"results\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Результаты</button>"+
-									"</div>");
+		        $("#matrix1").css({"text-align": "center", "color": "#e11a64"});
+				$("#matrix1").html("<h1>You lose!</h1>"+
+								"<h4>Your score: "+score+"</h4>"+
+								   "<div class=\"col-xs-12 game-over-btns\"><p>"+
+										"<button id=\"restart\" class=\"btn btn-info btn-lg\" type=\"submit\">New game</button>"+
+										"<button id=\"results\" class=\"btn btn-info btn-lg\" type=\"submit\">Results</button>"+
+									"</p></div>");
 	}	
 	this.appendSearchField = function(){
 		$("#matrix1").append("<p><input type=\"text\" id=\"findUser\"/></p>");
@@ -139,6 +139,7 @@ function Matrix(containerId, rows, cols)
 	this.addTableUsers = function(){
 		$("#matrix1").append("<div id=\"resultsUser\" class=\"col-xs-12\">"+
 								"<table id=\"results-tbl\" class=\"col-xs-8 col-xs-offset-2\">"+
+								"<tr><td class=\"left-col\"><b>Name:</b></td><td class=\"right-col\"><b>Score:</b></td></tr>"+
 								"</table>"+
 							"</div>");
 	}

@@ -4,15 +4,15 @@ function Core()
 {
 	
 	this.snake;
-	this.timer;
-	this.timerFrog;
+	this.timerGame;
+	this.timerHedgehog;
 	this.count = new Score();
 	
 	var bullet;
 	
-	var w;  //hedgehog
-	var wX = 15;
-	var wY = 15;
+	var hedgehog;  //hedgehog
+	var hedgehogX = 15;
+	var hedgehogY = 15;
 	
 	var timeCore;	
 	var timeHedgehog;
@@ -67,20 +67,18 @@ function Core()
 	{	
 		that.count.reset();
 		
-		clearInterval(that.timer);                               // Пересмотреть таймера, не всегда срабатывает килл  и можно съесть себя(вниз и назад)		
-		clearInterval(that.timerFrog);                           
-		that.timer = setInterval( function(){					  
-			if(!that.snake.alive){				
-				that.gameover();
-			}			
+		clearInterval(that.timerGame);                               	
+		clearInterval(that.timerHedgehog);                           
+		that.timerGame = setInterval( function(){					  
+			if(!that.snake.alive)				that.gameover();
+						
 			that.snake.move(that.snake.course);	
-            if(wX == that.snake.body[0][0] && wY == that.snake.body[0][1] ) that.snake.kill();			
-			
-            			
+            if(hedgehogX == that.snake.body[0][0] && hedgehogY == that.snake.body[0][1] ) that.snake.kill();			
+			           			
 			} ,timeCore);
-		that.timerFrog = setInterval(function(){
-			w.postMessage(that.snake.body);	
-			m1.setCell(wX,wY,false);			
+		that.timerHedgehog = setInterval(function(){
+			hedgehog.postMessage(that.snake.body);	
+			m1.setCell(hedgehogX,hedgehogY,false);			
 		}, timeHedgehog);
 	}
 	
@@ -91,8 +89,8 @@ function Core()
 	    that.stopWorker();
 	    delete that.snake;
 		delete bullet;
-	    that.timer = clearInterval(that.timer);
-		that.timerFrog = clearInterval(that.timerFrog);
+	    that.timerGame = clearInterval(that.timerGame);
+		that.timerHedgehog = clearInterval(that.timerHedgehog);
 		//завершаем игру
 		
 		var countPlayer = that.count.getCount();
@@ -163,14 +161,14 @@ function Core()
 	//Workers
 	this.startWorker = function() {
     if(typeof(Worker) !== "undefined") {
-        if(typeof(w) == "undefined") {
-            w = new Worker("Hedgehog.js");
+        if(typeof(hedgehog) == "undefined") {
+            hedgehog = new Worker("Hedgehog.js");
         }
-        w.onmessage = function(event) {
-			wX = event.data[0];
-			wY = event.data[1];
-			//if(wX == that.snake.body[0][0] && wY == that.snake.body[0][1] ) that.snake.kill();
-          m1.setBombCell(wX,wY);
+        hedgehog.onmessage = function(event) {
+			hedgehogX = event.data[0];
+			hedgehogY = event.data[1];
+			//if(hedgehogX == that.snake.body[0][0] && hedgehogY == that.snake.body[0][1] ) that.snake.kill();
+          m1.setBombCell(hedgehogX,hedgehogY);
 		  if(event.data[2]){
 			  bullet = new Bullet(event.data[0],event.data[1],event.data[3]);
 			  
@@ -182,8 +180,8 @@ function Core()
 }
 
 	this.stopWorker = function() { 
-		w.terminate();
-		w = undefined;
+		hedgehog.terminate();
+		hedgehog = undefined;
 	}
 	
 	this.increaseScore = function(){
@@ -193,25 +191,23 @@ function Core()
 	this.cmdRight = function()
 	{		
 		that.changeSnakeCourse('left','right');
-		//меняем курс змеи вправо, если это возможно
+		//Change the course of the snake to the right
 	}
 	
 	this.cmdLeft = function()
 	{		
 		that.changeSnakeCourse('right','left');
-		//меняем курс змеи влево, если это возможно
+		//Change the course of the snake to the left.
 	}
 	
 	this.cmdUp = function()
 	{		
-		that.changeSnakeCourse('down','up');
-		//меняем курс змеи вверх, если это возможно
+		that.changeSnakeCourse('down','up');		
 	}
 	
 	this.cmdDown = function()
 	{		
-		that.changeSnakeCourse('up','down');
-		//меняем курс змеи вниз, если это возможно
+		that.changeSnakeCourse('up','down');		
 	}
 	
 	this.changeSnakeCourse = function(currentCourse, newCourse){

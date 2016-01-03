@@ -1,5 +1,5 @@
 
-function Bullet(x,y,course){   // принимаем координаты жабы и курс
+function Bullet(x,y,course){   // принимаем координаты ежа и курс
 	var a = x;
 	var b = y;
 	this.x = x;

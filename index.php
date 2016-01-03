@@ -14,15 +14,14 @@ include_once('add.php');
 	 <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />   
-	<script language="javascript" src="matrix.js"></script>
-	<script language="javascript" src="onload.js"></script>
-	<script language="javascript" src="core.js"></script>
-	<script language="javascript" src="snake.js"></script>
-	<script language="javascript" src="hedgehog.js"></script>
-	<script language="javascript" src="bullet.js"></script>
-	<script language="javascript" src="Food.js"></script>
-	<script language="javascript" src="score.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
+	<script language="javascript" src="/js/matrix.js"></script>
+	<script language="javascript" src="/js/onload.js"></script>
+	<script language="javascript" src="/js/core.js"></script>
+	<script language="javascript" src="/js/snake.js"></script>
+	<script language="javascript" src="/js/hedgehog.js"></script>
+	<script language="javascript" src="/js/bullet.js"></script>
+	<script language="javascript" src="/js/Food.js"></script>
+	<script language="javascript" src="/js/score.js"></script>	
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,7 +37,7 @@ include_once('add.php');
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body ng-app>
+  <body>
 
     <div class="container">
 		    <div id="matrix1"></div>
