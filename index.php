@@ -14,14 +14,14 @@ include_once('add.php');
 	 <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />   
-	<script language="javascript" src="/js/matrix.js"></script>
-	<script language="javascript" src="/js/onload.js"></script>
-	<script language="javascript" src="/js/core.js"></script>
-	<script language="javascript" src="/js/snake.js"></script>
-	<script language="javascript" src="/js/hedgehog.js"></script>
-	<script language="javascript" src="/js/bullet.js"></script>
+	<script language="javascript" src="/js/Matrix.js"></script>
+	<script language="javascript" src="/js/Onload.js"></script>
+	<script language="javascript" src="/js/Core.js"></script>
+	<script language="javascript" src="/js/Snake.js"></script>
+	<script language="javascript" src="/js/Hedgehog.js"></script>
+	<script language="javascript" src="/js/Bullet.js"></script>
 	<script language="javascript" src="/js/Food.js"></script>
-	<script language="javascript" src="/js/score.js"></script>	
+	<script language="javascript" src="/js/Score.js"></script>	
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
